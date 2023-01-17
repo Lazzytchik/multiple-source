@@ -1,0 +1,25 @@
+version: '2'
+
+services:
+  postgresql:
+    image: docker.io/bitnami/postgresql:latest
+    environment:
+      # ALLOW_EMPTY_PASSWORD is recommended only for development.
+      - ALLOW_EMPTY_PASSWORD=yes
+      - POSTGRESQL_USER=multi
+      - POSTGRESQL_DATABASE=multiple_source
+      - POSTGRESQL_PASSWORD=root
+  multi:
+    image: docker.io/bitnami/laravel:latest
+    ports:
+      - '8000:8000'
+    environment:
+      - DB_HOST=postgresql
+      - DB_PORT=5432
+      - DB_USERNAME=multi
+      - DB_DATABASE=multiple_source
+      - DB_PASSWORD=root
+    volumes:
+      - './my-project:/app'
+    depends_on:
+      - postgresql

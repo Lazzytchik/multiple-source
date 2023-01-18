@@ -7,6 +7,11 @@ use Illuminate\Support\Collection;
 
 class UserSourceDb implements UserSource
 {
+    public function build(): static
+    {
+        return new static();
+    }
+
     public function all(): Collection
     {
         return User::all();

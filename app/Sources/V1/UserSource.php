@@ -2,9 +2,10 @@
 
 namespace App\Sources\V1;
 
+use App\Sources\Source;
 use Illuminate\Support\Collection;
 
-interface UserSource
+interface UserSource extends Source
 {
     /**
      * Gathers all models from data source.
